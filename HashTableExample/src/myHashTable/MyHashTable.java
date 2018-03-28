@@ -1,5 +1,6 @@
 package myHashTable;
 import java.util.Hashtable;
+import java.util.Set;
 
 // Important stuff here
 public class MyHashTable {
@@ -18,6 +19,26 @@ public class MyHashTable {
 		
 		// I would like to know what pizza was ordered by "Smith"
 		Pizza smithPizza = myPizza.get("Smith");
+		if (smithPizza == null) {
+			System.out.println("Lookup failed.");
+		} else {
+			System.out.println(smithPizza.getDough()); // The dough in the Pizza ordered by "Smith"
+		}
+		long key = 0;
+		/*while(true){
+			//This will run forever because we will be overwriting the same pizza over and over
+			//myPizza.put("Huston",new Pizza("thin",20));
+			myPizza.put(String.valueOf(key),new Pizza("thin",20));
+			key++;
+			if (key % 1000000 ==0) {System.out.println(myPizza.size());}
+		}*/
+		// How do I iterate over a hastable?
+		Set<String> keys = myPizza.keySet();
+		for (String k: keys) {
+			System.out.println("Value of "+ k+ " is: "+ myPizza.get(k).getDough());
+			//How do hashtables sort?
+			System.out.println(myPizza.get(k).hashCode() % myPizza.size());
+		}
 		
 	}
 
